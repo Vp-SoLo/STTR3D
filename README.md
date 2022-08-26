@@ -2,19 +2,13 @@
 
 We introduce STTR3D, a 3D extension of the **ST**ereo **TR**ansformer (STTR) which leverages transformers and attention mechanism to handle stereo depth estimation. We further make use of the SceneFlow FlyingThings3D dataset which openly includes data for disparity change and apply 1) refinements through the use of MLP over relative position encoding and 2) regression head with an entropy-regularized optimal transport to obtain a disparity change map. This model consistently demonstrates  superior performance for depth estimation as  compared to  the original model. In comparison to the existing supervised learning methods for stereo and depth estimation, our technique handles  both depth estimation and depth change problem with an end-to-end network, also establishing that the addition of our transformer yields improved performance that achieves high precision for both problems.
 
----
-
 ## Result
-
----
 
 > result on FlyingThings3D subset
 
 ![](./doc/result.png)
 
 ## RoadMap
-
----
 
 | Date   | Event                                      |
 | ------ | ------------------------------------------ |
@@ -30,15 +24,11 @@ We introduce STTR3D, a 3D extension of the **ST**ereo **TR**ansformer (STTR) whi
 
 ## STTR-3D
 
----
-
 Schematics of STTR3D. The network extracts features of left and right frames in $t_1, t_2$ by using a shared Encoder and Decoder. The extracted features are processed by STTR3D-TR and STTR-TR subnets, where `TR` denote Transformer and Regression. For STTR3D-TR, two left image feature maps are processed by Tansformer3D after adding positional encoding from the MLP encoder. The two maps are sent for optimal transport to generate the matching score map. Regression3D takes the disparity map from two depth frames and matching score maps to gain the raw disparity change map. The raw disparity change map is then sent to Context Adjustment Layer 3D with two left frames to get the final disparity change map. For STTR-TR, it takes 4 feature maps. It also uses a Transformer to update the feature and uses optimal transport with regression to gain a raw disparity map. The context adjustment layer 3D leverages all the origin stereo images to adjust the disparity maps.
 
 ![Overview](doc/Overview-16614854445162.png)
 
 ## Installation
-
----
 
 ### Requirements
 
@@ -70,8 +60,6 @@ we recommend you to use pre-trained model, since Transformer based model is hard
 
 ## Dataset
 
----
-
 We use the FlyingThings3D subsets to trained our model and tested on the validation split. We also tested it on the Scene Flow Driving Dataset, both datasets can be download through this link: [Computer Vision Group, Freiburg (uni-freiburg.de)](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html)
 
 <img src="doc/image-20220826133021615.png" alt="image-20220826133021615" style="zoom:50%;" />
@@ -101,8 +89,6 @@ Or you can check the file `./dataset/scene_flow.py` to customize you structure
 
 ## Train or validation
 
----
-
 Before training, you need to modify the parameters of the model, please check `./utilites/integration_tools.py` to change you own dataset path. Then you can start training by the command:
 
 ```
@@ -120,8 +106,6 @@ python3 evaluate.py
 ```
 
 ## FAQ
-
----
 
 1. How to change the arguments about the program? I can't find any command including arguments
 
@@ -144,12 +128,8 @@ python3 evaluate.py
 
 ## Acknowledge
 
----
-
 This work is based on [STTR](https://github.com/mli0603/stereo-transformer), it's also inspired by [SuperGlue](https://github.com/HeatherJiaZG/SuperGlue-pytorch).
 
 ## License
-
----
 
 The methods provided on this page are published under the [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License](http://creativecommons.org/licenses/by-nc-sa/3.0/) . This means that you must attribute the work in the manner specified by the authors, you may not use this work for commercial purposes and if you alter, transform, or build upon this work, you may distribute the resulting work only under the same license. If you are interested in commercial usage you can contact us for further options.
