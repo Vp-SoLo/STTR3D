@@ -1,4 +1,4 @@
-# STTR-3D: Stereo Transformer 3D Network for Video Depth Estimation
+# (APWeb-WAIM 2023)STTR-3D: Stereo Transformer 3D Network for Video Depth Estimation
 
 We introduce STTR3D, a 3D extension of the **ST**ereo **TR**ansformer (STTR) which leverages transformers and attention mechanism to handle stereo depth estimation. We further make use of the SceneFlow FlyingThings3D dataset which openly includes data for disparity change and apply 1) refinements through the use of MLP over relative position encoding and 2) regression head with an entropy-regularized optimal transport to obtain a disparity change map. This model consistently demonstrates  superior performance for depth estimation as  compared to  the original model. In comparison to the existing supervised learning methods for stereo and depth estimation, our technique handles  both depth estimation and depth change problem with an end-to-end network, also establishing that the addition of our transformer yields improved performance that achieves high precision for both problems.
 
